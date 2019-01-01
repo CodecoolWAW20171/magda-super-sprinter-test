@@ -173,3 +173,5 @@ fabric.properties
 **/.DS_Store
 node_modules
 ./data.csv
+
+.idea/runConfigurations/All_tests.xml
