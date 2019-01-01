@@ -7,23 +7,34 @@
 
     <body>
 
-    <div class="header">
+    <header>
         <h1>Super Sprinter 3000</h1>
         <h2>What's <strong>your</strong> story?</h2>
-    </div>
+    </header>
+    <br><br>
     <nav class="navigation">
         <a href="#">All stories</a>
         <a href="#">Add story</a>
         <a href="#">Make a good story</a>
         <a href="#">Sources</a>
     </nav>
+    <br><br>
     <div class="table">
         <table>
             <tr>
-                <th>ID</th>
-                <th>Story</th>
-                <th>Inne</th>
+                {% for item in headers %}
+                    <th>{{item}}</th>
+                {% endfor %}
             </tr>
+
+            {% for row in user_stories %}
+                <tr>
+                    {% for item in row %}
+                        <td>{{ row[item] }}</td>
+                    {% endfor%}
+                </tr>
+            {% endfor %}
+
         </table>
     </div>
 
