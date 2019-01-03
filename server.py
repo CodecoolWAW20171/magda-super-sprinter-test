@@ -9,16 +9,16 @@ app = Flask(__name__)
 @app.route('/list')
 def route_list():
     user_stories = data_handler.get_all_user_story()
-    headers = data_handler.DATA_HEADER
+    headers = ['ID', 'TITLE', 'USER STORY', 'ACCEPTANCE CRITERIA', 'BUSINESS VALUE', 'ESTIMATION', 'STATUS']
     return render_template('list.html', user_stories=user_stories, headers=headers)
 
 
-@app.route('/add', methods=['GET', 'POST'])
+@app.route('/add-story', methods=['GET', 'POST'])
 def route_add():
     statuses = data_handler.STATUSES
     story = None
     if request.method == 'GET':
-        return render_template('add.html', statuses=statuses)
+        return render_template('add-story.html', statuses=statuses)
     else:  # czy to jest prawidłowo czy nie powinno byc ze wskazaniem na post?
         id = request.form['id']
         title = request.form['title']
