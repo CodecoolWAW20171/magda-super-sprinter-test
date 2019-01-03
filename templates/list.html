@@ -1,42 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8"/>
         <title>Super Sprinter Page</title>
+        <meta name="description" content="Tell us your story!"/>
+        <meta name="keywords" content="user-story, sprinter"/>
+        <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1"/> <!--from M.Zelent-->
+        <link href="{{url_for('static', filename='css/my_style.css')}}" rel="stylesheet" type="text/css"/>
+
     </head>
 
     <body>
-
+    <img alt ="Autumn leaves" id="leaves" src="{{url_for('static',filename='css/leaves1.png')}}"/>
     <header>
         <h1>Super Sprinter 3000</h1>
         <h2>What's <strong>your</strong> story?</h2>
     </header>
-    <br><br>
     <nav class="navigation">
-        <a href="#">All stories</a>
-        <a href="/add">Add story</a>
+        <a href="/">All stories</a>
+        <a href="/add-story">Add story</a>
         <a href="#">Make a good story</a>
         <a href="#">Sources</a>
     </nav>
-    <br><br>
+    <br>
+
     <div class="table">
         <table>
             <tr>
                 {% for item in headers %}
                     <th>{{item}}</th>
                 {% endfor %}
+                    <th></th>
+                    <th></th>
+
             </tr>
 
-            {% for row in user_stories %}
+            {% for stories in user_stories %}
                 <tr>
-                    {% for item in row %}
-                        <td>{{ row[item] }}</td>
+                    {% for item in stories %}
+                        <td>{{ stories[item] }}</td>
                     {% endfor%}
+                        <td><button class="button" name="edit" type="submit">Edit story</button></td>
+                        <td><button class="button" name="delete" type="reset">Delete story</button></td>
                 </tr>
             {% endfor %}
 
         </table>
     </div>
+    <br><br>
+    <footer>
+        <!--Mailto, maker? -->
+    </footer>
 
     </body>
 
