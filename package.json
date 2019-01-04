@@ -10,8 +10,18 @@
   },
   "author": "",
   "dependencies": {
-    "puppeteer": "^0.13.0",
-    "chai": "^4.1.2",
-    "mocha": "^4.0.1"
-  }
+    "chai": "^4.2.0",
+    "mocha": "^4.0.1",
+    "puppeteer": "^0.13.0"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodecoolGlobal/super-sprinter-3000-python-magg666.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodecoolGlobal/super-sprinter-3000-python-magg666/issues"
+  },
+  "homepage": "https://github.com/CodecoolGlobal/super-sprinter-3000-python-magg666#readme"
 }
