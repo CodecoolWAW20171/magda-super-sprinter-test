@@ -175,5 +175,6 @@ node_modules
 ./data.csv
 
 .idea/runConfigurations/All_tests.xml
+.idea/wswp-super-sprinter-3000.iml
 
 uwagi.txt
