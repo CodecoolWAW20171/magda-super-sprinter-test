@@ -2,7 +2,7 @@
   <configuration default="false" name="All tests" type="mocha-javascript-test-runner">
     <node-interpreter>project</node-interpreter>
     <node-options />
-    <mocha-package />
+    <mocha-package>/usr/lib/node_modules/mocha</mocha-package>
     <working-directory>$PROJECT_DIR$</working-directory>
     <pass-parent-env>true</pass-parent-env>
     <ui>bdd</ui>
