@@ -16,10 +16,10 @@
 
     <header id="upper_part">
         <img alt="Autumn leaves" id="leaves" class="leaves_image" src="{{url_for('static',filename='images/leaves1.png')}}"/>
-        <h1>Super Sprinter 3000</h1>
+        <h1 class="sprinter">Super Sprinter 3000</h1>
         <h2>All User Stories</h2>
         <nav class="navigation" id="navigation">
-            <a href="/">ALL STORIES</a>
+            <a href="/list">ALL STORIES</a>
             <a href="/story">ADD STORY</a>
             <a href="#">MAKE A GOOD STORY</a>
             <a href="#">SOURCES</a>
@@ -28,9 +28,7 @@
 
     <main>
         <h3>Here you can see all your stories.</h3>
-        <h4>If you want <em>edit</em> or <em>delete</em> any of them - press the corresponding button and rewrite your story!</h4>
-        <h4>If you want to know how to make user-stories - go to 'MAKE A GOOD STORY' section</h4>
-        <h4>And if you want to know which sources I used - check 'SOURCES' page</h4>
+
         <table title="List of Stories" class="table" id="stories_table">
             <tr>
                 {% for item in headers %}
@@ -43,17 +41,19 @@
 
             <tr>
                 {% for item in stories %}
-                    <td>{{ stories[item] }}</td>
+                    <td class="table_item">{{ stories[item] }}</td>
                 {% endfor %}
-                    <td>
-                        <button class="button" name="edit" type="submit" title="Edit Story">
-                            <a href="/story/{{ stories['id'] }}">Edit story </a>
-                        </button>
+                    <td class="table_button">
+                        <a href="/story/{{ stories['id'] }}">
+                            <button class="button" name="edit" type="submit" title="Edit Story">EDIT</button>
+                        </a>
+
                     </td>
-                    <td>
-                        <button class="button" name="delete" type="submit" title="Delete Story">
-                            <a href="/story/delete/{{ stories['id'] }}"> Delete story</a>
-                        </button>
+                    <td class="table_button">
+                        <a href="/story/delete/{{ stories['id'] }}">
+                            <button class="button" name="delete" type="submit" title="Delete Story">DELETE</button>
+                        </a>
+
                     </td>
 
             </tr>
@@ -61,7 +61,7 @@
          </table>
     </main>
     <footer>
-        <h5 id="copyright">copyright 2018-2019@mw with CC</h5>
+        <h5 class="copyright" id="copyright">copyright 2018-2019@mw&pk with CC</h5>
         <h5 id="mailto"><a href="mailto:mw23127@gmail.com"> Contact</a></h5>
     </footer>
 </body>
