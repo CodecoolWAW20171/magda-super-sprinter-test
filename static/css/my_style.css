@@ -4,7 +4,7 @@ body {
 }
 
 #leaves {
-    height: 500px;
+    height: 300px;
     position: absolute;
     right: 0;
     top: 0;
@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background: cornsilk;
+    background: rgba(255,148,77,0.5);
     color: black;
     font-family: 'Verdana', sans-serif;
     font-size: 2em;
@@ -62,8 +62,9 @@ table, th, td {
 }
 
 table {
-    width: 85%;
+    width: 90%;
     font-family: sans-serif;
+    position: center;
 }
 
 th {
@@ -80,4 +81,9 @@ td {
     padding-right: 5px;
     text-align: left;
     text-wrap: normal;
+    white-space: pre-line;
+}
+
+.story {
+    padding-left: 50px;
 }
