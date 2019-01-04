@@ -22,5 +22,13 @@ def append_stories_in_file(story):
         writer.writerow(story)
 
 
+def get_story_by_id(id):
+    with open('data.csv', newline='') as file:
+        reader = csv.DictReader(file)
+        for story in reader:
+            if story['id'] == id:
+                return story
+
 # story1 = {'id':'01', 'title':'all list', 'user_story':'As a User', 'acceptance_criteria':'Given that', 'business_value':'20', 'estimation':'2', 'status':'done'}
 # append_stories_in_file(story1)
+print(get_story_by_id('2')['title'])
