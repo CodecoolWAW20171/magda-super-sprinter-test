@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Super Sprinter Page</title>
-        <meta name="description" content="Tell us your story!"/>
-        <meta name="keywords" content="user-story, sprinter"/>
-        <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1"/> <!--from M.Zelent-->
-        <link href="{{url_for('static', filename='css/my_style.css')}}" rel="stylesheet" type="text/css"/>
 
-    </head>
+<!--Head of the document -->
+<head>
+    <meta charset="UTF-8"/>
+    <title>Super Sprinter Page</title>
+    <meta name="keywords" content="user-story, sprinter"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1"/> <!--from M.Zelent-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- responsive web -->
+    <link href="{{url_for('static', filename='css/my_style.css')}}" rel="stylesheet" type="text/css"/>
+</head>
 
-    <body>
-    <img alt ="Autumn leaves" id="leaves" src="{{url_for('static',filename='css/leaves1.png')}}"/>
-    <header>
+<!--Body of document-->
+<body class="all_page">
+
+    <header id="upper_part">
+        <img alt="Autumn leaves" id="leaves" class="leaves_image" src="{{url_for('static',filename='images/leaves1.png')}}"/>
         <h1>Super Sprinter 3000</h1>
-        <h2>What's <strong>your</strong> story?</h2>
+        <h2>All User Stories</h2>
+        <nav class="navigation" id="navigation">
+            <a href="/">ALL STORIES</a>
+            <a href="/story">ADD STORY</a>
+            <a href="#">MAKE A GOOD STORY</a>
+            <a href="#">SOURCES</a>
+        </nav>
     </header>
-    <nav class="navigation">
-        <a href="/">All stories</a>
-        <a href="/story">Add story</a>
-        <a href="#">Make a good story</a>
-        <a href="#">Sources</a>
-    </nav>
-    <br>
 
-    <div class="table">
-        <table>
+    <main>
+        <h3>Here you can see all your stories.</h3>
+        <h4>If you want <em>edit</em> or <em>delete</em> any of them - press the corresponding button and rewrite your story!</h4>
+        <h4>If you want to know how to make user-stories - go to 'MAKE A GOOD STORY' section</h4>
+        <h4>And if you want to know which sources I used - check 'SOURCES' page</h4>
+        <table title="List of Stories" class="table" id="stories_table">
             <tr>
-                    <th></th>
                 {% for item in headers %}
                     <th>{{item}}</th>
                 {% endfor %}
                     <th></th>
+                    <th></th>
+            </tr>
+            {% for stories in user_stories %}
+
+            <tr>
+                {% for item in stories %}
+                    <td>{{ stories[item] }}</td>
+                {% endfor %}
+                    <td>
+                        <button class="button" name="edit" type="submit" title="Edit Story">
+                            <a href="/story/{{ stories['id'] }}">Edit story </a>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="button" name="delete" type="submit" title="Delete Story">
+                            <a href="/story/delete/{{ stories['id'] }}"> Delete story</a>
+                        </button>
+                    </td>
 
             </tr>
-
-            {% for stories in user_stories %}
-                <tr>
-                    <td><button class="button" name="edit" type="submit"><a href="/story/{{ stories['id'] }}">Edit story </a></button></td>
-                    {% for item in stories %}
-                        <td>{{ stories[item] }}</td>
-                    {% endfor%}
-                         <td><button class="button" name="delete" type="reset">Delete story</button></td>
-                </tr>
             {% endfor %}
-
-        </table>
-    </div>
-    <br><br>
+         </table>
+    </main>
     <footer>
-        <!--Mailto, maker? -->
+        <h5 id="copyright">copyright 2018-2019@mw with CC</h5>
+        <h5 id="mailto"><a href="mailto:mw23127@gmail.com"> Contact</a></h5>
     </footer>
-
-    </body>
-
+</body>
 </html>
