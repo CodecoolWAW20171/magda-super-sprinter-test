@@ -35,7 +35,7 @@ def route_add():
     """
     statuses = data_handler.STATUSES
     if request.method == 'GET':
-        return render_template('add-story.html', statuses=statuses)
+        return render_template('add.html', statuses=statuses)
     else:
         id = common.generate_timestamp_as_id()
         story = common.make_story(id)
@@ -61,6 +61,10 @@ def route_edit(id):
         data_handler.update_story_by_id(id, new_story)
         return redirect('/')
 
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return "Nie ma", 404
 
 if __name__ == '__main__':
     app.run(
