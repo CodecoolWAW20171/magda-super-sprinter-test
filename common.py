@@ -27,9 +27,9 @@ def make_story(id):
     title = request.form['title']
     user_story = request.form['user_story']
     acceptance_criteria = request.form['acceptance_criteria']
-    business_value = request.form['business_value'] + ' point'
-    estimation = request.form['estimation'] + ' h'
-    status = request.form['status']
+    business_value = request.form['business_value']
+    estimation = request.form['estimation']
+    status = request.form['statuses']
     story = {'id': id, 'title': title, 'user_story': user_story, 'acceptance_criteria': acceptance_criteria,
              'business_value': business_value, 'estimation': estimation, 'status': status}
     return story
