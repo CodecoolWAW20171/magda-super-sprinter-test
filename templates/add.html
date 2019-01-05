@@ -16,7 +16,7 @@
     <header id="upper_part">
         <img alt="Autumn leaves" id="leaves" src="{{url_for('static',filename='images/leaves1.png')}}"/>
         <h1>Add User Story</h1>
-        <h2>Super Sprinter 3000</h2>
+        <h2 class="sprinter">Super Sprinter 3000</h2>
         <nav class="navigation" id="navigation">
             <a href="/list">ALL STORIES</a>
             <a href="/story">ADD STORY</a>
@@ -25,41 +25,42 @@
         </nav>
     </header>
 
-    <main>
-        <form action="/story" method="post" name="story" class="add_story">
+    <main class="divide_page">
+        <form action="/story" method="post" name="story" class="add_story" id="adding_story">
 
-            <label for="title">Story Title:</label>
-            <input id="title" type="text" name="title" minlength="5" required="required" placeholder="Title of story"/>
+            <label for="add_title">Story Title:</label>
+            <input id="add_title" type="text" name="title" minlength="5" required="required" placeholder="Title of story"/>
 
-            <label for="user_story">User Story:</label>
-            <textarea id="user_story" name="user_story" required="required" rows="10" cols="50"
+            <label for="add_user_story">User Story:</label>
+            <textarea id="add_user_story" name="user_story" required="required" rows="8" cols="50"
                       placeholder="As a <type of user>, I want <perform some action>, so that I<can achieve some goal> "></textarea>
 
-            <label for="acceptance_criteria">Acceptance Criteria:</label>
-            <textarea id="acceptance_criteria" name="acceptance_criteria" required="required" rows="10"
-                      cols="50" placeholder="Given/When/Then"></textarea>
+            <label for="add_acceptance_criteria">Acceptance Criteria:</label>
+            <textarea id="add_acceptance_criteria" name="acceptance_criteria" required="required" rows="8"
+                      cols="50" placeholder="Conditions of acceptations"></textarea>
 
-            <label for="business_value">Business Value:</label>
-            <input id="business_value" type="number" name="business_value" min="100" max="1500" step="100" pattern="d%100=0"
-                   required="required">
+            <label for="add_business_value">Business Value:</label>
+            <input id="add_business_value" type="number" name="business_value" min="100" max="1500" step="100" pattern="d%100=0"
+                   required="required" placeholder="Importance (100-1500, only hundreds)">
 
-            <label for="estimation">Estimation:</label>
-            <input id="estimation" type="number" name="estimation" min="0.5" max="40" step="0.5" pattern="d%0.5=0"
-                   required="required">
+            <label for="add_estimation">Estimation:</label>
+            <input id="add_estimation" type="number" name="estimation" min="0.5" max="40" step="0.5" pattern="d%0.5=0"
+                   required="required" placeholder="Estimated time (0.5-40)">
 
-            <label for="statuses">Status</label><br>
-            <select id="statuses" disabled="disabled">
-                {% for status in statuses %}
-                <option>{{ status }}</option>
-                {% endfor %}
+            <label class="add_status" for="statuses">Status</label><br>
+            <select name="statuses" id="statuses" class="add_status">
+                <option value="{{current}}" class="add_status">{{current}}</option>
             </select>
-            <button class="submit_button" type="submit">Add New User Story</button>
+
         </form>
     </main>
-
+    <aside class="second_divide_page">
+        <img id="invest_picture" src="../static/images/invest.png" alt="Picture of INVEST acronym">
+        <button form="adding_story" class="submit_button" type="submit">ADD NEW USER STORY</button>
+    </aside>
     <footer>
-        <h5 class="copyright" id="copyright">copyright 2018-2019@mw&pk with CC</h5>
         <h5 id="mailto"><a href="mailto:mw23127@gmail.com"> Contact</a></h5>
+        <h5 class="copyright" id="copyright">copyright 2018-2019@mw&pk with CC</h5>
     </footer>
 
 </body>
