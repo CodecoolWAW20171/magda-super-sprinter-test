@@ -64,6 +64,12 @@ def route_edit(id):
         return redirect('/')
 
 
+@app.route('/story/delete/<story_id>')
+def route_delete(story_id):
+    data_handler.delete_story_by_id(story_id)
+    return redirect('/')
+
+
 @app.errorhandler(404)
 def not_found_error(error):
     return "Nie ma", 404

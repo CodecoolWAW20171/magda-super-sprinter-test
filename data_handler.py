@@ -58,10 +58,10 @@ def get_story_by_id(id):
 # https://stackoverflow.com/questions/46126082/how-to-update-rows-in-a-csv-file
 # polecana metoda aktualizowania - praca na pliku tymczasowym a nie źródłowym
 # stąd moduł shutil, który pozwala zamykać, otwierać i kopiować pliki
-def update_story_by_id(id, new_story):
+def update_story_by_id(story_id, new_story):
     """
     Function finds story by given id and changes its data
-    :param id:
+    :param story_id:
     :param new_story:
     :return: no return
     """
@@ -69,9 +69,22 @@ def update_story_by_id(id, new_story):
         reader = csv.DictReader(csv_file, fieldnames=DATA_HEADER)
         writer = csv.DictWriter(output, fieldnames=DATA_HEADER)
         for story in reader:
-            if story['id'] == id:
+            if story['id'] == story_id:
                 story = {k: new_story[k] for k in story}
             writer.writerow(story)
     shutil.move('output_file.csv', DATA_FILE_PATH)
 
 
+def delete_story_by_id(story_id):
+    """
+    Function finds story by given id and deletes its data
+    :param story_id:
+    :return: no return
+    """
+    with open(DATA_FILE_PATH, 'r') as csv_file, open('output_file.csv', 'w') as output:
+        reader = csv.DictReader(csv_file, fieldnames=DATA_HEADER)
+        writer = csv.DictWriter(output, fieldnames=DATA_HEADER)
+        for story in reader:
+            if story['id'] != story_id:
+                writer.writerow(story)
+    shutil.move('output_file.csv', DATA_FILE_PATH)
