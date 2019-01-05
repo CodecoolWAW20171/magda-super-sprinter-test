@@ -34,11 +34,12 @@ def route_add():
     :return: depends of used method (but webpage)
     """
     statuses = data_handler.STATUSES
+    current = statuses[0]
     if request.method == 'GET':
-        return render_template('add.html', statuses=statuses)
+        return render_template('add.html', statuses=statuses, current=current)
     else:
-        id = common.generate_timestamp_as_id()
-        story = common.make_story(id)
+        time_id = common.generate_timestamp_as_id()
+        story = common.make_story(time_id)
         data_handler.append_stories_in_file(story)
         return redirect('/')
 
@@ -53,9 +54,10 @@ def route_edit(id):
     :param id:
     :return: depends of used method (but webpage)
     """
+    statuses = data_handler.STATUSES
     if request.method == "GET":
         wanted_story = data_handler.get_story_by_id(id)
-        return render_template('edit.html', wanted_story=wanted_story)
+        return render_template('edit.html', wanted_story=wanted_story, statuses=statuses)
     else:
         new_story = common.make_story(id)
         data_handler.update_story_by_id(id, new_story)
