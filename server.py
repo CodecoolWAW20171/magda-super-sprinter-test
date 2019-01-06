@@ -34,7 +34,7 @@ def route_add():
     :return: depends of used method (but webpage)
     """
     statuses = data_handler.STATUSES
-    current = statuses[0]
+    current = 'planning'
     if request.method == 'GET':
         return render_template('add.html', statuses=statuses, current=current)
     else:
@@ -54,25 +54,41 @@ def route_edit(id):
     :param id:
     :return: depends of used method (but webpage)
     """
-    statuses = data_handler.STATUSES
-    if request.method == "GET":
-        wanted_story = data_handler.get_story_by_id(id)
-        return render_template('edit.html', wanted_story=wanted_story, statuses=statuses)
-    else:
-        new_story = common.make_story(id)
-        data_handler.update_story_by_id(id, new_story)
-        return redirect('/')
+    try:
+        statuses = data_handler.STATUSES
+        if request.method == "GET":
+            wanted_story = data_handler.get_story_by_id(id)
+            current = wanted_story['status']
+            return render_template('edit.html', wanted_story=wanted_story, statuses=statuses, current=current)
+        else:
+            new_story = common.make_story(id)
+            data_handler.update_story_by_id(id, new_story)
+            return redirect('/')
+    except TypeError:
+        return not_found_error(404)
 
 
 @app.route('/story/delete/<story_id>')
 def route_delete(story_id):
+    """
+    Function supports deleting stories by id
+    :param story_id:
+    :return: redirect to main page
+    """
     data_handler.delete_story_by_id(story_id)
     return redirect('/')
 
 
+@app.route('/make-story')
+def route_make_story():
+    return render_template('make_story.html')
+
+
+# Znalezione w sieci. Działa, ale po co ten error w parametrach?
 @app.errorhandler(404)
 def not_found_error(error):
-    return "Nie ma", 404
+    return render_template('404.html'), 404
+
 
 if __name__ == '__main__':
     app.run(
