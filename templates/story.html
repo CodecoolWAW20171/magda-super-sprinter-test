@@ -19,13 +19,13 @@
                    placeholder="Title of story" value="{% if wanted_story %}{{wanted_story['title']}}{% endif %}"/>
 
             <label for="user_story">User Story:</label>
-            <textarea id="user_story" name="user_story" required="required" rows="8" cols="50"
+            <textarea id="user_story" name="user_story" required="required" rows="8" cols="50" style="white-space: pre-line"
                       placeholder="As a <type of user>,
                       I want <perform some action>,
                       so that I<can achieve some goal> ">{% if wanted_story %}{{wanted_story['user_story']}}{% endif %}</textarea>
 
             <label for="acceptance_criteria">Acceptance Criteria:</label>
-            <textarea id="acceptance_criteria" name="acceptance_criteria" required="required" rows="8" cols="50"
+            <textarea id="acceptance_criteria" name="acceptance_criteria" required="required" rows="8" cols="50" style="white-space: pre-line"
                       placeholder="Conditions of acceptations">{% if wanted_story %}{{wanted_story['acceptance_criteria']}}{% endif %}</textarea>
 
             <label for="business_value">Business Value:</label>

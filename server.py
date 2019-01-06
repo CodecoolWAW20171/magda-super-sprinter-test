@@ -38,7 +38,7 @@ def route_add():
     action_type = "Add"
     second_column = 'add_form'
     if request.method == 'GET':
-        return render_template('add.html',
+        return render_template('story.html',
                                statuses=statuses,
                                current=current,
                                action_type=action_type,
@@ -67,7 +67,7 @@ def route_edit(story_id):
         if request.method == "GET":
             wanted_story = data_handler.get_story_by_id(story_id)
             current = wanted_story['status']
-            return render_template('add.html',
+            return render_template('story.html',
                                    wanted_story=wanted_story,
                                    statuses=statuses,
                                    current=current,
