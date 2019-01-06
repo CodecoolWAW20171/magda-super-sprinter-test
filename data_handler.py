@@ -14,14 +14,10 @@ def get_all_user_story():
     and return them
     return: List of ordered dicts
     """
-    # No właśnie, czy to nie jest zbytnia komplikacja? czy może powinien być słownik słowników?
-    # ale kompletnie nie wyobrażam sobie struktury. Do przemyślenia
 
     with open(DATA_FILE_PATH, newline=None) as file:
         reader = csv.DictReader(file)
-        all_stories = []
-        for row in reader:
-            all_stories.append(row)
+        all_stories = [story for story in reader]
         return all_stories
 
 
@@ -33,22 +29,22 @@ def append_stories_in_file(story):
     return: None
     """
 
-    with open(DATA_FILE_PATH, 'a', newline=None) as file:
+    with open(DATA_FILE_PATH, 'a') as file:
         writer = csv.DictWriter(file, fieldnames=DATA_HEADER)
         writer.writerow(story)
 
 
-def get_story_by_id(id):
+def get_story_by_id(story_id):
     """
     Based on given id looks for story with matching id
     and returns it
-    :param id:
+    :param story_id:
     :return: story as a dict
     """
     with open(DATA_FILE_PATH, newline='') as file:
         reader = csv.DictReader(file)
         for story in reader:
-            if story['id'] == id:
+            if story['id'] == story_id:
                 return story
 
 
