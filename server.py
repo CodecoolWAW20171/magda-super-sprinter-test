@@ -79,6 +79,8 @@ def route_edit(story_id):
             return redirect('/')
     except TypeError:
         return not_found_error(404)
+    except KeyError:
+        return bad_request_error(400)
 
 
 @app.route('/story/delete/<story_id>')
@@ -97,10 +99,19 @@ def route_make_story():
     return render_template('make_story.html')
 
 
-# Znalezione w sieci. Działa, ale po co ten error w parametrach?
+@app.route('/sources')
+def route_sources():
+    return bad_request_error(400)
+
+
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
+
+
+@app.errorhandler(400)
+def bad_request_error(error):
+    return render_template('400.html'), 400
 
 
 if __name__ == '__main__':

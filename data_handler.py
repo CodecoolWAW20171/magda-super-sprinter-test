@@ -15,10 +15,15 @@ def get_all_user_story():
     return: List of ordered dicts
     """
 
-    with open(DATA_FILE_PATH, newline=None) as file:
-        reader = csv.DictReader(file)
-        all_stories = [story for story in reader]
-        return all_stories
+    try:
+        with open(DATA_FILE_PATH, newline=None) as file:
+            reader = csv.DictReader(file)
+            all_stories = [story for story in reader]
+            return all_stories
+    except ConnectionError:
+        return 'There is problem with connection. Try again later'
+    except FileNotFoundError:
+        return 'There is no such file'
 
 
 def append_stories_in_file(story):
@@ -28,10 +33,14 @@ def append_stories_in_file(story):
     param story:
     return: None
     """
-
-    with open(DATA_FILE_PATH, 'a') as file:
-        writer = csv.DictWriter(file, fieldnames=DATA_HEADER)
-        writer.writerow(story)
+    try:
+        with open(DATA_FILE_PATH, 'a') as file:
+            writer = csv.DictWriter(file, fieldnames=DATA_HEADER)
+            writer.writerow(story)
+    except ConnectionError:
+        return 'There is problem with connection. Try again later'
+    except FileNotFoundError:
+        return 'There is no such file'
 
 
 def get_story_by_id(story_id):
@@ -41,11 +50,16 @@ def get_story_by_id(story_id):
     :param story_id:
     :return: story as a dict
     """
-    with open(DATA_FILE_PATH, newline='') as file:
-        reader = csv.DictReader(file)
-        for story in reader:
-            if story['id'] == story_id:
-                return story
+    try:
+        with open(DATA_FILE_PATH, newline='') as file:
+            reader = csv.DictReader(file)
+            for story in reader:
+                if story['id'] == story_id:
+                    return story
+    except ConnectionError:
+        return 'There is problem with connection. Try again later'
+    except FileNotFoundError:
+        return 'There is no such file'
 
 
 # rozwiązanie skompilowałam z:
