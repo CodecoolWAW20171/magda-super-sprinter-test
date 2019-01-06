@@ -1,4 +1,7 @@
 {% extends "layout.html" %}
+{% block link %}
+<link href="{{url_for('static', filename='css/my_style.css')}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
 {% block header_titles %}
 <h1>Error occurred. Don't panic...</h1>
 {% endblock %}
