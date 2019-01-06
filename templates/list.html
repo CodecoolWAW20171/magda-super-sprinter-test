@@ -2,6 +2,11 @@
 
 {% block title %}Super Sprinter Page{% endblock %}
 
+{% block link %}
+<link href="{{url_for('static', filename='css/my_style.css')}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
 {% block header_titles %}
 <h1 class="sprinter">Super Sprinter 3000</h1>
 <h2>All User Stories</h2>
