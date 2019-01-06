@@ -35,8 +35,15 @@ def route_add():
     """
     statuses = data_handler.STATUSES
     current = 'planning'
+    action_type = "Add"
+    second_column = 'add_form'
     if request.method == 'GET':
-        return render_template('add.html', statuses=statuses, current=current)
+        return render_template('add.html',
+                               statuses=statuses,
+                               current=current,
+                               action_type=action_type,
+                               form_url=url_for('route_add'),
+                               second_column=second_column)
     else:
         time_id = common.generate_timestamp_as_id()
         story = common.make_story(time_id)
@@ -44,25 +51,31 @@ def route_add():
         return redirect('/')
 
 
-@app.route('/story/<id>', methods=['GET', 'POST'])
-def route_edit(id):
+@app.route('/story/<story_id>', methods=['GET', 'POST'])
+def route_edit(story_id):
     """
     Function support webpage /story/<id> - editing and updating
     finds story by id (timestamp)
     Using two methods - if 'GET' - shows form with filled data from story
     if POST - execute saving updated data in database and redirect to /list page
-    :param id:
+    :param story_id:
     :return: depends of used method (but webpage)
     """
     try:
         statuses = data_handler.STATUSES
+        action_type = "Update"
         if request.method == "GET":
-            wanted_story = data_handler.get_story_by_id(id)
+            wanted_story = data_handler.get_story_by_id(story_id)
             current = wanted_story['status']
-            return render_template('edit.html', wanted_story=wanted_story, statuses=statuses, current=current)
+            return render_template('add.html',
+                                   wanted_story=wanted_story,
+                                   statuses=statuses,
+                                   current=current,
+                                   action_type=action_type,
+                                   form_url=url_for('route_edit', story_id=story_id))
         else:
-            new_story = common.make_story(id)
-            data_handler.update_story_by_id(id, new_story)
+            new_story = common.make_story(story_id)
+            data_handler.update_story_by_id(story_id, new_story)
             return redirect('/')
     except TypeError:
         return not_found_error(404)
