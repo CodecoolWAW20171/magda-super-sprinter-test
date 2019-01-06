@@ -14,9 +14,6 @@ def generate_timestamp_as_id():
     return current_time
 
 
-# tu jest problem z tym dodawaniem point i h.
-# zobaczyć czy nie da się tego rozwiązać jakoś css albo html
-# żeby tylko  wyświetlało points/h ale nie dodawało do pliku csv.
 def make_story(id):
     """
     Function takes data from form (except ID) and creates dictionary
@@ -29,8 +26,21 @@ def make_story(id):
     acceptance_criteria = request.form['acceptance_criteria']
     business_value = request.form['business_value']
     estimation = request.form['estimation']
-    status = request.form['statuses']
+    status = request.form['status']
     story = {'id': id, 'title': title, 'user_story': user_story, 'acceptance_criteria': acceptance_criteria,
              'business_value': business_value, 'estimation': estimation, 'status': status}
     return story
+
+# nie działa jak powinno.
+def convert_linebreaks_in_userstory():
+    all_stories = data_handler.get_all_user_story()
+    for user_story in all_stories:
+        user_story['user_story'] = convert_linebreaks_to_br(user_story['user_story'])
+        user_story['acceptance_criteria'] = convert_linebreaks_to_br(user_story['acceptance_criteria'])
+    return all_stories
+
+
+def convert_linebreaks_to_br(original_str):
+    return '<br>'.join(original_str.split('\n'))
+
 
