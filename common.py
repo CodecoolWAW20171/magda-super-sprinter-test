@@ -43,4 +43,3 @@ def convert_linebreaks_in_userstory():
 def convert_linebreaks_to_br(original_str):
     return '<br>'.join(original_str.split('\n'))
 
-
