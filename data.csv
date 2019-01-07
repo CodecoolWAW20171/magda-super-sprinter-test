@@ -1,1 +1,56 @@
 id,title,user_story,acceptance_criteria,business_value,estimation,status
+1546781623,List all User Stories,"As a User,
+I want to see all the previously saved User stories,
+So I get an overview of all requirements","Given that there are any number ({0..n}) of saved User Stories,
+When I open the website (`/`),
+Then ensure I see a table with all the stored data",1000,2,done
+1546781655,Add new User Stories,"As a User,
+I want to be able to add a new User stories,
+So I can extend the list of requirements","When I open the website (`/`),
+And I click the ""Add User Story"" link
+Then ensure I see form where I can add details of the new User Story,
+And if I submit the form, this US gets saved.",800,4,done
+1546781698,Update existing User Stories,"As a User,
+I want to be able to change details of an existing User Story,
+So that I can keep them up-to-date with the current info.","When I open the website (`/`),
+And I click the title of a User Story,
+Then ensure I see a form prefilled with the details of the User Story,
+And when I submit the changed data, ensure it gets save,
+And ensure it overwrites the previous details, not creating a new User Story.",700,6,done
+1546781746,Delete User Story,"As a User, I want delete not necessary stories to keep order and avoid mess","On list page will be button 'delete' for each story
+If User press a button, story will be erased from list and from database.",400,2,done
+1546782103, Editing and adding stories ," As a Very Young Programmer,
+I want to make one template for adding and updating story
+So it would look nice in my code "," Both 'adding' and 'editing' functionalities must use the same template.
+There must be ternary operators in code. ",600,6,done
+1546782355,ID of story,"As a User,
+I want to see ordinal numbers for my stories,
+To nice and ordered view","When (/) page is open,
+Every story has a ordinal number
+Even if user deletes some story, ordinal numbers must be consecutive.",200,4,done
+1546782551,Time Stamp of story,"As a Web Owner,
+I want to have possibility to check when story was added,
+So I can track them in time","When story is added, timestamp is generated,
+and it is saved in csv document.
+User don't see timestamp
+",200,4,done
+1546782801,Error Handling,"As a Very Inexperienced Programmer,
+I want to make my project foolproof and error resistant,
+So I would not be ashamed in front of my mentors when they will be testing my page","Every function in code, which gets data from user/database or writes   data in database must be enclosed by error handling structures",500,4,review
+1546783056,Source Page,"As a Maker of This Page,
+I want to make page with links to pages I make use of,
+To give credits to all authors of sources I used","When (/sources) page is open,
+There must be links to different pages.
+Pages will contain helpful things.",300,4,done
+1546783393,Sorting,"As a User,
+I want to see which story is most important or which story estimation is longest,
+And after that I want to return to earlier view.
+So I can better plan my work","When page (/) is open,
+On the headers of list <ordinals>, <business value> and <estimation> will be sorting buttons.
+When user press them they will sort content of header in descending order. 
+When he press them again they will sort in ascending order.
+Ordinals numbers will not change.",200,7,planning
+1546793011,Main Page,"As a User,
+I want that only me can see my stories,
+To prevent destroy them.","When main page is open there must be login form
+And user login password validation",100,5,planning

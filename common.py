@@ -32,7 +32,6 @@ def make_story(id):
     return story
 
 
-# nie działa jak powinno.
 def convert_linebreaks_in_all_stories(all_stories):
     for user_story in all_stories:
         user_story['user_story'] = convert_linebreaks_to_br(user_story['user_story'])
