@@ -31,15 +31,22 @@ def make_story(id):
              'business_value': business_value, 'estimation': estimation, 'status': status}
     return story
 
+
 # nie działa jak powinno.
-def convert_linebreaks_in_userstory():
-    all_stories = data_handler.get_all_user_story()
+def convert_linebreaks_in_all_stories(all_stories):
     for user_story in all_stories:
         user_story['user_story'] = convert_linebreaks_to_br(user_story['user_story'])
         user_story['acceptance_criteria'] = convert_linebreaks_to_br(user_story['acceptance_criteria'])
     return all_stories
 
 
+def convert_linebreaks_in_one(user_story):
+    user_story['user_story'] = convert_linebreaks_to_br(user_story['user_story'])
+    user_story['acceptance_criteria'] = convert_linebreaks_to_br(user_story['acceptance_criteria'])
+    return user_story
+
+
 def convert_linebreaks_to_br(original_str):
-    return '<br>'.join(original_str.split('\n'))
+    modified_str = original_str.replace('<br>', '\n')
+    return modified_str
 
