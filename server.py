@@ -101,7 +101,7 @@ def route_make_story():
 
 @app.route('/sources')
 def route_sources():
-    return bad_request_error(400)
+    return render_template('source.html')
 
 
 @app.errorhandler(404)
