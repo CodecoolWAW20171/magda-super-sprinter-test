@@ -2,6 +2,7 @@
 import csv
 import os
 import shutil
+import common
 
 DATA_FILE_PATH = os.getenv('DATA_FILE_PATH') if 'DATA_FILE_PATH' in os.environ else 'data.csv'
 DATA_HEADER = ['id', 'title', 'user_story', 'acceptance_criteria', 'business_value', 'estimation', 'status']
@@ -19,7 +20,7 @@ def get_all_user_story():
         with open(DATA_FILE_PATH, newline=None) as file:
             reader = csv.DictReader(file)
             all_stories = [story for story in reader]
-            return all_stories
+            return common.convert_linebreaks_in_all_stories(all_stories)
     except ConnectionError:
         return 'There is problem with connection. Try again later'
     except FileNotFoundError:
@@ -55,7 +56,7 @@ def get_story_by_id(story_id):
             reader = csv.DictReader(file)
             for story in reader:
                 if story['id'] == story_id:
-                    return story
+                    return common.convert_linebreaks_in_one(story)
     except ConnectionError:
         return 'There is problem with connection. Try again later'
     except FileNotFoundError:
