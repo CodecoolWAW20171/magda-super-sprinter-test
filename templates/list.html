@@ -3,50 +3,67 @@
 {% block title %}Super Sprinter Page{% endblock %}
 
 {% block link %}
-<link href="{{url_for('static', filename='css/my_style.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='css/my_style.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 
 {% block header_titles %}
-<h1 class="sprinter">Super Sprinter 3000</h1>
-<h2>All User Stories</h2>
+    <h1 class="sprinter">Super Sprinter 3000</h1>
+    <h2>All User Stories</h2>
 {% endblock %}
 
-
 {% block main_content %}
-<h3>Here you can see all your stories.</h3>
-        <table title="List of Stories" class="table" id="stories_table">
-            <tr>
-                {% for item in headers %}
-                    <th>{{item}}</th>
-                {% endfor %}
-                    <th></th>
-                    <th></th>
-            </tr>
+    <h3>Here you can see all your stories.</h3>
+    <form action="/list" method="get" class="sort_label">Sort by:
+        <label for="attribute" class="sort_label">Header</label>
+        <select name="attribute" id="attribute" class="sorting" required>
+            <option value="title">Title</option>
+            <option value="user_story">User Story</option>
+            <option value="acceptance_criteria">Acceptance Criteria</option>
+            <option value="business_value">Business Value</option>
+            <option value="estimation">Estimation</option>
+            <option value="status">Status</option>
+        </select>
+        <label for="order" class="sort_label">Order</label>
+        <select name="order" id="order" class="sorting" required>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
 
-            {% for story in user_stories %}
-            <tr>
+        {#        <input name="order" type="text" value="" required/>#}
+        <button class="button" type="submit" value="Submit">Sort me</button>
+    </form>
 
-                    <td class="table_item">{{ loop.index }}</td>
-
-                    <td class="table_item">{{ story['title'] }}</td>
-                    <td class="table_item" >{{ story['user_story'] }}</td>
-                    <td class="table_item" >{{ story['acceptance_criteria'] }}</td>
-                    <td class="table_item">{{ story['business_value'] }} point</td>
-                    <td class="table_item">{{ story['estimation'] }}h</td>
-                    <td class="table_item">{{ story['status'] }}</td>
-                    <td class="table_button">
-                        <a href="/story/{{ story['id'] }}">
-                            <button class="button" name="edit" type="submit" title="Edit Story">EDIT</button>
-                        </a>
-
-                    </td>
-                    <td class="table_button">
-                        <a href="/story/delete/{{ story['id'] }}">
-                            <button class="button" name="delete" type="submit" title="Delete Story">DELETE</button>
-                        </a>
-                    </td>
-            </tr>
+    <table title="List of Stories" class="table" id="stories_table">
+        <tr>
+            {% for item in headers %}
+                <th>{{ item }}</th>
             {% endfor %}
-         </table>
+            <th></th>
+            <th></th>
+        </tr>
+
+        {% for story in user_stories %}
+            <tr>
+                <td class="table_item">{{ loop.index }}</td>
+                <td class="table_item">{{ story['title'] }}</td>
+                <td class="table_item">{{ story['user_story'] }}</td>
+                <td class="table_item">{{ story['acceptance_criteria'] }}</td>
+                <td class="table_item">{{ story['business_value'] }} point</td>
+                <td class="table_item">{{ story['estimation'] }}h</td>
+                <td class="table_item">{{ story['status'] }}</td>
+                <td class="table_button">
+                    <a href="/story/{{ story['id'] }}">
+                        <button class="button" name="edit" type="submit" title="Edit Story">EDIT</button>
+                    </a>
+
+                </td>
+                <td class="table_button">
+                    <a href="/story/delete/{{ story['id'] }}">
+                        <button class="button" name="delete" type="submit" title="Delete Story">DELETE</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

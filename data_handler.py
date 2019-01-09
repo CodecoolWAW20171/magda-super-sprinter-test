@@ -4,6 +4,7 @@ import os
 import shutil
 import common
 
+
 DATA_FILE_PATH = os.getenv('DATA_FILE_PATH') if 'DATA_FILE_PATH' in os.environ else 'data.csv'
 DATA_HEADER = ['id', 'title', 'user_story', 'acceptance_criteria', 'business_value', 'estimation', 'status']
 STATUSES = ['planning', 'todo', 'in progress', 'review', 'done']
@@ -16,15 +17,10 @@ def get_all_user_story():
     return: List of ordered dicts
     """
 
-    try:
-        with open(DATA_FILE_PATH, newline=None) as file:
-            reader = csv.DictReader(file)
-            all_stories = [story for story in reader]
-            return common.convert_linebreaks_in_all_stories(all_stories)
-    except ConnectionError:
-        return 'There is problem with connection. Try again later'
-    except FileNotFoundError:
-        return 'There is no such file'
+    with open(DATA_FILE_PATH, newline=None) as file:
+        reader = csv.DictReader(file)
+        all_stories = [story for story in reader]
+        return common.convert_linebreaks_in_all_stories(all_stories)
 
 
 def append_stories_in_file(story):
@@ -34,14 +30,9 @@ def append_stories_in_file(story):
     param story:
     return: None
     """
-    try:
-        with open(DATA_FILE_PATH, 'a') as file:
-            writer = csv.DictWriter(file, fieldnames=DATA_HEADER)
-            writer.writerow(story)
-    except ConnectionError:
-        return 'There is problem with connection. Try again later'
-    except FileNotFoundError:
-        return 'There is no such file'
+    with open(DATA_FILE_PATH, 'a') as file:
+        writer = csv.DictWriter(file, fieldnames=DATA_HEADER)
+        writer.writerow(story)
 
 
 def get_story_by_id(story_id):
@@ -51,16 +42,11 @@ def get_story_by_id(story_id):
     :param story_id:
     :return: story as a dict
     """
-    try:
-        with open(DATA_FILE_PATH, newline='') as file:
-            reader = csv.DictReader(file)
-            for story in reader:
-                if story['id'] == story_id:
-                    return common.convert_linebreaks_in_one(story)
-    except ConnectionError:
-        return 'There is problem with connection. Try again later'
-    except FileNotFoundError:
-        return 'There is no such file'
+    with open(DATA_FILE_PATH, newline='') as file:
+        reader = csv.DictReader(file)
+        for story in reader:
+            if story['id'] == story_id:
+                return common.convert_linebreaks_in_one(story)
 
 
 # rozwiązanie skompilowałam z:

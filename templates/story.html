@@ -1,69 +1,69 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ action_type}} User Story{% endblock %}
+{% block title %}{{ action_type }} User Story{% endblock %}
 {% block link %}
-<link href="{{url_for('static', filename='css/my_style.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='css/my_style.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block header_titles %}
-<h1>{{action_type}} User Story</h1>
-<h2 class="sprinter">Super Sprinter 3000</h2>
+    <h1>{{ action_type }} User Story</h1>
+    <h2 class="sprinter">Super Sprinter 3000</h2>
 {% endblock %}
 
 {% block main %}
     <main class="divide_page">
-        <form action="{{ form_url}}" method="post" name="story" class="story" id="story">
+        <form action="{{ form_url }}" method="post" name="story" class="story" id="story">
 
             <label for="title">Story Title:</label>
             <input id="title" type="text" name="title" minlength="5" required="required"
-                   placeholder="Title of story" value="{% if wanted_story %}{{wanted_story['title']}}{% endif %}"/>
+                   placeholder="Title of story" value="{% if wanted_story %}{{ wanted_story['title'] }}{% endif %}"/>
 
             <label for="user_story">User Story:</label>
             <textarea id="user_story" name="user_story" required="required" rows="8" cols="50"
                       placeholder="As a <type of user>,
                       I want <perform some action>,
-                      so that I<can achieve some goal> ">{% if wanted_story %}{{wanted_story['user_story']}}{% endif %}</textarea>
+                      so that I<can achieve some goal> ">{% if wanted_story %}{{ wanted_story['user_story'] }}{% endif %}</textarea>
 
             <label for="acceptance_criteria">Acceptance Criteria:</label>
             <textarea id="acceptance_criteria" name="acceptance_criteria" required="required" rows="8" cols="50"
-                      placeholder="Conditions of acceptations">{% if wanted_story %}{{wanted_story['acceptance_criteria']}}{% endif %}</textarea>
+                      placeholder="Conditions of acceptations">{% if wanted_story %}{{ wanted_story['acceptance_criteria'] }}{% endif %}</textarea>
 
             <label for="business_value">Business Value:</label>
-            <input id="business_value" type="number" name="business_value" min="100" max="1500" step="100" pattern="d%100=0"
+            <input id="business_value" type="number" name="business_value" min="100" max="1500" step="100"
+                   pattern="d%100=0"
                    required="required" placeholder="Importance (100-1500, only hundreds)"
-                   value="{% if wanted_story %}{{wanted_story['business_value']}}{% endif %}"/>
+                   value="{% if wanted_story %}{{ wanted_story['business_value'] }}{% endif %}"/>
 
             <label for="estimation">Estimation:</label>
             <input id="estimation" type="number" name="estimation" min="0.5" max="40" step="0.5" pattern="d%0.5=0"
                    required="required" placeholder="Estimated time (0.5-40)"
-                   value="{% if wanted_story %}{{wanted_story['estimation']}}{% endif %}"/>
+                   value="{% if wanted_story %}{{ wanted_story['estimation'] }}{% endif %}"/>
 
             {% if wanted_story is defined %}
-            <label for="status" class="status">Status</label>
-            <select name="status" id="status" class="status">
-                {% for status in statuses %}
-                    <option value="{{status}}" {{ 'selected' if current==status }}>{{status}}</option>
-                {% endfor %}
-            </select>
+                <label for="status" class="status">Status</label>
+                <select name="status" id="status" class="status">
+                    {% for status in statuses %}
+                        <option value="{{ status }}" {{ 'selected' if current==status }}>{{ status }}</option>
+                    {% endfor %}
+                </select>
             {% else %}
-            <label class="add_status" for="status">Status</label><br>
-            <select name="status" id="add_status" class="add_status">
-                <option value="{{current}}" class="add_status">{{current}}</option>
-            </select>
+                <label class="add_status" for="add_status">Status</label><br>
+                <select name="status" id="add_status" class="add_status">
+                    <option value="{{ current }}" class="add_status">{{ current }}</option>
+                </select>
             {% endif %}
         </form>
     </main>
 {% endblock %}
 
-
-{% block aside%}
-<aside class="second_divide_page">
-    {% if second_column is defined %}
-    <img id="invest_picture" src="../static/images/invest.png" alt="Picture of INVEST acronym">
-    <button form="story" class="submit_button" type="submit">ADD NEW USER STORY</button>
-    {% else %}
-    <img id="done_picture" src="../static/images/done.jpg" alt="Definition of done">
-    <button form="story" class="submit_button" type="submit">UPDATE USER STORY</button>
-    {% endif %}
-</aside>
+{% block aside %}
+    <aside class="second_divide_page">
+        {% if second_column is defined %}
+            <img id="invest_picture" src="../static/images/invest.png" alt="Picture of INVEST acronym">
+            <button form="story" class="submit_button" type="submit">ADD NEW USER STORY</button>
+        {% else %}
+            <img id="done_picture" src="../static/images/done.jpg" alt="Definition of done">
+            <button form="story" class="submit_button" type="submit">UPDATE USER STORY</button>
+        {% endif %}
+    </aside>
 {% endblock %}

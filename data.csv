@@ -36,7 +36,7 @@ User don't see timestamp
 ",200,4,done
 1546782801,Error Handling,"As a Very Inexperienced Programmer,
 I want to make my project foolproof and error resistant,
-So I would not be ashamed in front of my mentors when they will be testing my page","Every function in code, which gets data from user/database or writes   data in database must be enclosed by error handling structures",500,4,review
+So I would not be ashamed in front of my mentors when they will be testing my page","Every function in code, which gets data from user/database or writes   data in database must be enclosed by error handling structures",500,4,done
 1546783056,Source Page,"As a Maker of This Page,
 I want to make page with links to pages I make use of,
 To give credits to all authors of sources I used","When (/sources) page is open,
@@ -49,7 +49,7 @@ So I can better plan my work","When page (/) is open,
 On the headers of list <ordinals>, <business value> and <estimation> will be sorting buttons.
 When user press them they will sort content of header in descending order. 
 When he press them again they will sort in ascending order.
-Ordinals numbers will not change.",200,7,planning
+Ordinals numbers will not change.",200,7,done
 1546793011,Main Page,"As a User,
 I want that only me can see my stories,
 To prevent destroy them.","When main page is open there must be login form

@@ -8,36 +8,37 @@
     <meta name="keywords" content="user-story, sprinter"/>
     <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1"/> <!--from M.Zelent-->
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- responsive web -->
-    <link href="../static/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="../static/images/favicon.ico" rel="icon" type="image/x-icon"/>
     {% block link %} {% endblock %}
 </head>
 
 <body class="all_page">
-    <header id="upper_part">
-        <img alt="Autumn leaves" id="leaves" class="leaves_image" src="{{url_for('static',filename='images/leaves1.png')}}"/>
-        <div>
-            {% block header_titles %} {% endblock %}
-        </div>
-        <nav class="navigation" id="navigation">
-                <a href="/list">ALL STORIES</a>
-                <a href="/story">ADD STORY</a>
-                <a href="/make-story">MAKE A GOOD STORY</a>
-                <a href="/sources">SOURCES</a>
-        </nav>
-    </header>
-    {% block main %}
+<header id="upper_part">
+    <img alt="Autumn leaves" id="leaves" class="leaves_image"
+         src="{{ url_for('static',filename='images/leaves1.png') }}"/>
+    <div>
+        {% block header_titles %} {% endblock %}
+    </div>
+    <nav class="navigation" id="navigation">
+        <a href="/">ALL STORIES</a>
+        <a href="/story">ADD STORY</a>
+        <a href="/make-story">MAKE A GOOD STORY</a>
+        <a href="/sources">SOURCES</a>
+    </nav>
+</header>
+{% block main %}
     <main>
         {% block main_content %} {% endblock %}
     </main>
-    {% endblock %}
-    {% block aside %}
+{% endblock %}
+{% block aside %}
     <aside>
         {% block aside_content %} {% endblock %}
     </aside>
-    {% endblock %}
-    <footer>
-        <h5 id="mailto"><a href="mailto:mw23127@gmail.com"> Contact</a></h5>
-        <h5 class="copyright" id="copyright">copyright 2018-2019@mw&pk with CC</h5>
-    </footer>
+{% endblock %}
+<footer>
+    <h5 id="mailto"><a href="mailto:mw23127@gmail.com"> Contact</a></h5>
+    <h5 class="copyright" id="copyright">copyright 2018-2019@mw&pk with CC</h5>
+</footer>
 </body>
 </html>

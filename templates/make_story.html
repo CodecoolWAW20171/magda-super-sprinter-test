@@ -1,62 +1,62 @@
 {% extends "layout.html" %}
 {% block title %}Make a story{% endblock %}
 {% block link %}
-<link href="{{url_for('static', filename='css/sticky_page.css')}}" rel="stylesheet" type="text/css"/>
-<link href="http://fonts.googleapis.com/css?family=Indie+Flower:regular" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/sticky_page.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.googleapis.com/css?family=Indie+Flower:regular" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block header_titles %}
-<h1 class="sprinter">Super Sprinter 3000</h1>
-<h2>Make your story better</h2>
+    <h1 class="sprinter">Super Sprinter 3000</h1>
+    <h2>Make your story better</h2>
 {% endblock %}
 
 {% block main_content %}
-<div>
-    <ul>
-        <li>
-            <a href="#">
-                <p>Keep them short</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <p>Keep them simple</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <p>Write them from user's perspective</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <p>Be aware what is the reason of story</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <p>One functionality - one story</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <p>Write story as a team</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <p>Use Acceptance Criteria to show MVP</p>
-            </a>
-        </li>
-    </ul>
-</div>
-<img class="dilbert" src="{{url_for('static',filename='images/dilbert.gif')}}" alt="Comic of Dilbert">
+    <div>
+        <ul>
+            <li>
+                <a href="#">
+                    <p>Keep them short</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <p>Keep them simple</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <p>Write them from user's perspective</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <p>Be aware what is the reason of story</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <p>One functionality - one story</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <p>Write story as a team</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <p>Use Acceptance Criteria to show MVP</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <img class="dilbert" src="{{ url_for('static',filename='images/dilbert.gif') }}" alt="Comic of Dilbert">
 {% endblock %}
 
 
 {% block aside %}
-<aside>
-    {% block aside_content %} {% endblock %}
-</aside>
+    <aside>
+        {% block aside_content %} {% endblock %}
+    </aside>
 {% endblock %}
 

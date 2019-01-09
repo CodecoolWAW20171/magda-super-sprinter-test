@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block link %}
-<link href="{{url_for('static', filename='css/my_style.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='css/my_style.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block header_titles %}
-<h1>Error occurred. Don't panic...</h1>
+    <h1>Error occurred. Don't panic...</h1>
 {% endblock %}
 {% block main_content %}
-<div class="error">
-    <img src="{{url_for('static', filename='images/404.jpg')}}" alt="Dog looks at empty hole">
-    <h1>You are very lost. Please go home</h1>
-    <h2><a href="/">HOME PAGE</a></h2>
-</div>
+    <div class="error">
+        <img src="{{ url_for('static', filename='images/404.jpg') }}" alt="Dog looks at empty hole">
+        <h1>You are very lost. Please go home</h1>
+        <h2><a href="/">HOME PAGE</a></h2>
+    </div>
 {% endblock %}

@@ -7,25 +7,35 @@ import common
 app = Flask(__name__)
 
 
-# można wyrzucić stąd główną stronę i zrobić stronę wyboru projektu albo
-# logowanie jako główną. Do przemyślenia
 @app.route('/')
-@app.route('/list')
 def route_list():
     """
     Function supports main page and /list page
     :return: main page with list of stories
     """
-
     user_stories = data_handler.get_all_user_story()
     headers = ['ID', 'TITLE', 'USER STORY', 'ACCEPTANCE CRITERIA', 'BUSINESS VALUE', 'ESTIMATION', 'STATUS']
-    return render_template('list.html', user_stories=user_stories, headers=headers)
+    return render_template('list.html',
+                           user_stories=user_stories,
+                           headers=headers)
 
 
-# W tej funkcji użyłam funkcji z common:
-# generowania id jako znacznika czasowego i tworzenia słownika z danymi ze strony
-# wątpliwość - jako pierwszą metodę wskazałam GET natomiat POST bez konkretnego wskazania
-# czy to dobrze?
+@app.route('/list')
+def route_sorted_list():
+    try:
+        user_stories = data_handler.get_all_user_story()
+        attribute = request.args.get('attribute')
+        order = request.args.get('order')
+        user_stories = common.convert_number_to_integer(user_stories)
+        sorted_stories = common.sort_by_attributes(user_stories, attribute, order)
+        headers = ['ID', 'TITLE', 'USER STORY', 'ACCEPTANCE CRITERIA', 'BUSINESS VALUE', 'ESTIMATION', 'STATUS']
+        return render_template('list.html',
+                               user_stories=sorted_stories,
+                               headers=headers)
+    except UnboundLocalError:
+        return route_list()
+
+
 @app.route('/story', methods=['GET', 'POST'])
 def route_add():
     """
