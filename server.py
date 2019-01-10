@@ -1,5 +1,5 @@
 # file to handling server and passing data between user and database
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, Response
 import data_handler
 import common
 

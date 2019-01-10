@@ -51,8 +51,7 @@ def convert_linebreaks_in_all_stories(all_stories):
     """
 
     for user_story in all_stories:
-        user_story['user_story'] = convert_linebreaks_to_br(user_story['user_story'])
-        user_story['acceptance_criteria'] = convert_linebreaks_to_br(user_story['acceptance_criteria'])
+        convert_linebreaks_in_one(user_story)
     return all_stories
 
 
@@ -88,6 +87,7 @@ def sort_by_attributes(all_stories, attribute, order):
     :param order:
     :return: new_all_stories - list of dict
     """
+    sort_order = None
     if order == 'desc':
         sort_order = True
     elif order == 'asc':

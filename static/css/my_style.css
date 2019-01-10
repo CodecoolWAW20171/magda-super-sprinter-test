@@ -9,6 +9,7 @@ body {
     background-image: url("../images/woodbackground.jpg");
     background-size: cover;
     font-family: sans-serif;
+    background-attachment: fixed;
 }
 
 header {
